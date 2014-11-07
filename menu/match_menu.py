@@ -20,6 +20,8 @@ class MatchMenu:
                           [('Player 1', 1, None),
                            ('Player 2', 2, None)])
 
+        self._menu.set_background(screen, "assets/backgrounds/match_menu.png")
+
         self._menu.set_center(True, True)
         self._menu.set_alignment('center', 'center')
         self.on_reset()

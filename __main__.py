@@ -20,7 +20,7 @@ class WiffWaffer:
         self._running = True
         self._display_surf = None
         self._clear_screen = False
-        self.size = self.weight, self.height = 640, 400
+        self.size = self.weight, self.height = 2000, 1500
 
     def on_init(self):
         pygame.init()

@@ -19,6 +19,8 @@ class MainMenu:
                           [('Single Game', 1, None),
                            ('Tournament', 2, None)])
 
+        self._menu.set_background(screen, "assets/backgrounds/main_menu.png")
+
         self._menu.set_center(True, True)
         self._menu.set_alignment('center', 'center')
         self._state = 0

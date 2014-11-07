@@ -111,6 +111,15 @@ class Menu:
         self.y = y
         self.update_buttons = True
 
+    def set_background(self, screen, asset_path):
+        screensize = screen.get_rect()
+
+        background = pygame.transform.scale(
+            pygame.image.load(asset_path),
+            (screensize.width, screensize.height))
+
+        screen.blit(background, background.get_rect())
+
     def set_center(self, centered, centeredOnScreen):
         if centeredOnScreen:
             self.centeredOnScreen = centeredOnScreen
