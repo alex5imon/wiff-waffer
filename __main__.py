@@ -39,6 +39,7 @@ class WiffWaffer:
 
         # Create game
         self._game_controller = gc.GameController(self._display_surf)
+        self._game_controller.on_load()
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
