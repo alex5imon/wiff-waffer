@@ -12,7 +12,7 @@ class Menu:
     def __init__(self, x, y, h_pad, v_pad, orientation, number, background, buttonList, bg_path=None):
         ## menu items
         self.menu_items = []
-        self.font = pygame.font.Font(None, 32)
+        self.font = utils.fonts['main']
 
         self.x = x
         self.y = y
@@ -217,7 +217,7 @@ class Menu:
                 # Create the surface, blit the background image onto the surface (to
                 # make sure effects go away when the button is no longer selected),
                 # and then blit the actual button base image over the background
-                unselected_image = pygame.Surface((new_width, new_height), -1)
+                unselected_image = pygame.Surface((new_width + 100, new_height), -1)
                 rect = pygame.Rect(button['offset'], (new_width, new_height))
                 unselected_image.blit(self.background, (0, 0), rect)
                 unselected_image.blit(button['b_image'], offset)

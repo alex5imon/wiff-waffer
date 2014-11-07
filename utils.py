@@ -104,3 +104,8 @@ def set_background(screen, asset_path):
         (screensize.width, screensize.height))
 
     screen.blit(background, background.get_rect())
+
+pygame.font.init()
+fonts = {
+    'main': pygame.font.Font("assets/fonts/main.ttf", 25)
+    }
