@@ -16,7 +16,6 @@ class AvatarMenu:
 
     def __init__(self, screen, previous):
         self._screen = screen
-        self._previous = previous
 
         self._menu = Menu(50, 50, 20, 5, 'horizontal', 100, screen,
                           [('Image', 1, u.avatar_1),
@@ -31,6 +30,12 @@ class AvatarMenu:
         self._prev_state = 1
         self._rect_list = []
 
+        self._previous = previous
+        if previous == 'tournament':
+            self._opt1 = 'colour_tournament'
+        else:
+            self._opt1 = 'colour'
+
     def on_init(self):
         pass
 
@@ -41,7 +46,7 @@ class AvatarMenu:
             if event.key == pygame.K_RETURN:
                 avatar_name = "%i.png" % self._state
                 m.create_player(avatar=avatar_name)
-                m.on_change_menu('colour')
+                m.on_change_menu(self._opt1)
             self._state = 0
             # Go back
             if event.key == pygame.K_ESCAPE:

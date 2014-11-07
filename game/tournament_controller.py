@@ -34,7 +34,7 @@ class TournamentController:
     def on_reset(self):
         self._currentMatch = 0
         self._matches = []
-        for m in range(0, 7):
+        for m in range(0, 8):
             self._matches.append(match.Match(self._screen,
                                              p.Player("Unknown", None, None, None),
                                              p.Player("Unknown", None, None, None)))
@@ -71,14 +71,20 @@ class TournamentController:
         if not self.is_full():
             while True:
                 idx = randint(0, 7)
-                if self._matches[idx]._player1 is None:
+                if self._matches[idx]._player1._avatar is None:
                     self._matches[idx]._player1 = player
                     self._num_players += 1
-                    break
-                elif self._matches[idx]._player2 is None:
+                    return
+                elif self._matches[idx]._player2_avatar is None:
                     self._matches[idx]._player2 = player
                     self._num_players += 1
-                    break
+                    return
+
+    def add_player_by_name(self, name, players):
+        for p in players:
+            if p._name == name:
+                self.add_player(p)
+                return
 
     def create_player(self, name=None, avatar=None, colour=None):
         if name is not None:

@@ -24,10 +24,17 @@ class PlayerMenu:
         self._menu.set_center(True, True)
         self._menu.set_alignment('center', 'center')
 
-        self._previous = previous
         self._state = 0
         self._prev_state = 1
         self._rect_list = []
+
+        self._previous = previous
+        if previous == 'tournament':
+            self._opt1 = 'add_tournament'
+            self._opt2 = 'choose_tournament'
+        else:
+            self._opt1 = 'add'
+            self._opt2 = 'choose'
 
     def on_init(self):
         pass
@@ -37,9 +44,9 @@ class PlayerMenu:
             if self._state == 0:
                 self._rect_list, self._state = self._menu.update(event, self._state)
             if self._state == 1:
-                m.on_change_menu('add')  # Go to create player
+                m.on_change_menu(self._opt1)  # Go to create player
             if self._state == 2:
-                m.on_change_menu('choose')  # Go to select player
+                m.on_change_menu(self._opt2)  # Go to select player
             self._state = 0
             # Go back
             if event.key == pygame.K_ESCAPE:

@@ -28,13 +28,17 @@ class MenuController:
         self._menu_list['main'] = main_menu.MainMenu(screen)
         self._menu_list['tournament'] = tournament_menu.TournamentMenu(screen)
         self._menu_list['add'] = add_menu.AddMenu(screen, 'match')
+        self._menu_list['add_tournament'] = add_menu.AddMenu(screen, 'tournament')
         self._menu_list['player1'] = player_menu.PlayerMenu(screen, 1, 'match')
         self._menu_list['player2'] = player_menu.PlayerMenu(screen, 2, 'match')
         self._menu_list['player_tournament'] = player_menu.PlayerMenu(screen, 1, 'tournament')
         self._menu_list['match'] = match_menu.MatchMenu(screen)
-        self._menu_list['choose'] = choose_menu.ChooseMenu(screen)
+        self._menu_list['choose'] = choose_menu.ChooseMenu(screen, 'match')
+        self._menu_list['choose_tournament'] = choose_menu.ChooseMenu(screen, 'tournament')
         self._menu_list['avatar'] = avatar_menu.AvatarMenu(screen, 'match')
+        self._menu_list['avatar_tournament'] = avatar_menu.AvatarMenu(screen, 'tournament')
         self._menu_list['colour'] = colour_menu.ColourMenu(screen, 'match')
+        self._menu_list['colour_tournament'] = colour_menu.ColourMenu(screen, 'tournament')
         # Current menu
         self._current = self._menu_list['main']
 

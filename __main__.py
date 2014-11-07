@@ -21,7 +21,7 @@ class WiffWaffer:
         self._running = True
         self._display_surf = None
         self._clear_screen = False
-        self.size = self.weight, self.height = 2000, 1500
+        self.size = self.weight, self.height = 800, 600  # 1920, 1080
 
     def on_init(self):
         pygame.init()
@@ -119,8 +119,11 @@ def create_player(name=None, avatar=None, colour=None):
     game._game_controller.create_player(name, avatar, colour)
 
 
-def add_player_by_name(name=None):
-    game._game_controller.add_player_by_name(name)
+def add_player_by_name(name=None, tournament=False):
+    if tournament:
+        game._tournament_controller.add_player_by_name(name, game._game_controller._players)
+    else:
+        game._game_controller.add_player_by_name(name)
 
 
 def get_current_player():
