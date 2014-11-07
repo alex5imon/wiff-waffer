@@ -14,7 +14,9 @@ import utils as u
 
 class ColourMenu:
 
-    def __init__(self, screen):
+    def __init__(self, screen, previous):
+        self._previous = previous
+
         self._menu = Menu(50, 50, 20, 5, 'horizontal', 100, screen,
                           [('Image', 1, u.red_image),
                            ('Image', 2, u.blue_image),
@@ -49,11 +51,11 @@ class ColourMenu:
                     colour_selected = u.WHITE
                 if colour_selected is not None:
                     m.create_player(colour=colour_selected)
-                    m.on_change_menu('match')
+                    m.on_change_menu(self._previous)
             self._state = 0
             # Go back
             if event.key == pygame.K_ESCAPE:
-                m.on_change_menu('match')  # Go to create player
+                m.on_change_menu(self._previous)  # Go to create player
 
     def on_loop(self):
         if self._prev_state != self._state:

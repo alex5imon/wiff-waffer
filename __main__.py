@@ -12,6 +12,7 @@ import utils as u
 import sys
 import menu.menu_controller as mc
 import game.game_controller as gc
+import game.tournament_controller as tc
 
 
 class WiffWaffer:
@@ -40,6 +41,7 @@ class WiffWaffer:
         # Create game
         self._game_controller = gc.GameController(self._display_surf)
         self._game_controller.on_load()
+        self._tournament_controller = tc.TournamentController(self._display_surf)
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
@@ -135,6 +137,10 @@ def get_player_2():
 
 def get_players():
     return game._game_controller._players
+
+
+def get_tournament():
+    return game._tournament_controller
 
 
 def reset_game():

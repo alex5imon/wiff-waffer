@@ -8,6 +8,7 @@
 
 import pygame
 import main_menu
+import tournament_menu
 import match_menu
 import add_menu
 import player_menu
@@ -25,13 +26,15 @@ class MenuController:
         # Create diccionary of menus
         self._menu_list = {}
         self._menu_list['main'] = main_menu.MainMenu(screen)
-        self._menu_list['add'] = add_menu.AddMenu(screen)
-        self._menu_list['player1'] = player_menu.PlayerMenu(screen, 1)
-        self._menu_list['player2'] = player_menu.PlayerMenu(screen, 2)
+        self._menu_list['tournament'] = tournament_menu.TournamentMenu(screen)
+        self._menu_list['add'] = add_menu.AddMenu(screen, 'match')
+        self._menu_list['player1'] = player_menu.PlayerMenu(screen, 1, 'match')
+        self._menu_list['player2'] = player_menu.PlayerMenu(screen, 2, 'match')
+        self._menu_list['player_tournament'] = player_menu.PlayerMenu(screen, 1, 'tournament')
         self._menu_list['match'] = match_menu.MatchMenu(screen)
         self._menu_list['choose'] = choose_menu.ChooseMenu(screen)
-        self._menu_list['avatar'] = avatar_menu.AvatarMenu(screen)
-        self._menu_list['colour'] = colour_menu.ColourMenu(screen)
+        self._menu_list['avatar'] = avatar_menu.AvatarMenu(screen, 'match')
+        self._menu_list['colour'] = colour_menu.ColourMenu(screen, 'match')
         # Current menu
         self._current = self._menu_list['main']
 

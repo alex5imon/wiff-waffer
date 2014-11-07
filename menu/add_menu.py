@@ -38,8 +38,9 @@ class AddText:
 
 class AddMenu:
 
-    def __init__(self, screen):
+    def __init__(self, screen, previous):
         self._screen = screen
+        self._previous = previous
 
         self._state = 0
         self._ready = False
@@ -64,7 +65,7 @@ class AddMenu:
                 self._addText.on_event(event)
                 # Go back
                 if event.key == pygame.K_ESCAPE:
-                    m.on_change_menu('match')
+                    m.on_change_menu(self._previous)
                     self._mode = 0
 
     def on_loop(self):

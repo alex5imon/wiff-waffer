@@ -35,6 +35,9 @@ class MainMenu:
             if self._state == 1:
                 m.on_change_menu('match')
                 self._state = 0
+            elif self._state == 2:
+                m.on_change_menu('tournament')
+                self._state = 0
             else:
                 self._state = 0
 

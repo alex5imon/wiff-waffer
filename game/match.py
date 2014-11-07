@@ -81,6 +81,7 @@ class Match:
         self._serve = 0
         self._player1 = None
         self._player2 = None
+        self._winner = None
         self.on_reset_score()
 
     def on_reset_score(self):
@@ -91,6 +92,10 @@ class Match:
         if self._score1 == 21:
             if self._game1 == 1:
                 self._state = 4  # Player 1 wins match
+                self._m_player1.game_played()
+                self._m_player1.game_won()
+                self._winner = self._player1
+                self._m_player2.game_played()
                 m.clear_screen()
             else:
                 self._state = 2  # Player 1 wins game
@@ -100,7 +105,11 @@ class Match:
 
         if self._score2 == 21:
             if self._game2 == 1:
-                self._state = 5  # Player 1 wins match
+                self._state = 5  # Player 2 wins match
+                self._m_player1.game_played()
+                self._m_player2.game_played()
+                self._m_player2.game_won()
+                self._winner = self._player2
                 m.clear_screen()
             else:
                 self._state = 3  # Player 1 wins game

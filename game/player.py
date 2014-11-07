@@ -44,7 +44,11 @@ class Player:
             print "Error loading %s" % filename
 
     def save(self):
-        data = [{'name': self._name, 'avatar_name': self._avatar_name, 'colour': self._colour}]
+        data = [{'name': self._name,
+                 'avatar_name': self._avatar_name,
+                 'colour': self._colour,
+                 'played': self._games_played,
+                 'won': self._games_won}]
         path = os.path.join("players", "%s.json" % self._name)
         u.write_json(path, data, sort_keys=True)
 
