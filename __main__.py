@@ -21,7 +21,7 @@ class WiffWaffer:
         self._running = True
         self._display_surf = None
         self._clear_screen = False
-        self.size = self.weight, self.height = 800, 600  # 1920, 1080
+        self.size = self.weight, self.height = 800, 600  # 1920, 1080pygame.display.set_mode((640,480),pygame.)
 
     def on_init(self):
         pygame.init()

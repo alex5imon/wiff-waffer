@@ -7,7 +7,6 @@
 #
 
 import os.path
-import pygame
 import utils as u
 
 
@@ -51,21 +50,21 @@ class Player:
     def render(self, screen, left=True):
         position = None
         if left:
-            position = (10, 50)
+            position = (10, 440)
         else:
-            position = (500, 50)
+            position = (700, 440)
         # Draw avatar
         if self._avatar is not None:
             screen.blit(self._avatar, position)
         # Draw name
         if left:
-            position = (10, 80)
+            position = (10, 560)
         else:
-            position = (480, 80)
+            position = (700, 560)
         if self._name is not None:
-            msg = "Name: %s" % self._name
+            msg = "%s" % self._name
         else:
             msg = "Unknown"
-        text = pygame.font.Font(None, 32).render(msg, 1, self._colour)
+        text = u.fonts['main'].render(msg, 1, self._colour)
         screen.blit(text, position)
 

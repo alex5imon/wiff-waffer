@@ -9,7 +9,7 @@
 import pygame
 import __main__ as m
 from menu import Menu
-from utils import EVENT_CHANGE_STATE
+import utils as u
 
 
 class MatchMenu:
@@ -28,7 +28,7 @@ class MatchMenu:
         pass
 
     def on_event(self, event):
-        if event.type == pygame.KEYDOWN or event.type == EVENT_CHANGE_STATE:
+        if event.type == pygame.KEYDOWN or event.type == u.EVENT_CHANGE_STATE:
             if self._state == 0:
                 self._rect_list, self._state = self._menu.update(event, self._state)
             if self._state == 1:
@@ -45,7 +45,7 @@ class MatchMenu:
 
     def on_loop(self):
         if self._prev_state != self._state:
-            pygame.event.post(pygame.event.Event(EVENT_CHANGE_STATE, key=0))
+            pygame.event.post(pygame.event.Event(u.EVENT_CHANGE_STATE, key=0))
             self._prev_state = self._state
         self._ready = (m.get_player_1() is not None) and (m.get_player_2() is not None)
 
@@ -60,8 +60,8 @@ class MatchMenu:
         if player2 is not None:
             player2.render(self._screen, left=False)
         if self._ready:
-            text = pygame.font.Font(None, 32).render("Press SPACE to start", 1, (0, 255, 0))
-            self._screen.blit(text, (200, 300))
+            text = text = u.fonts['main'].render("Press SPACE to start", 1, u.WHITE)
+            self._screen.blit(text, (200, 450))
 
     def on_reset(self):
         self._state = 0

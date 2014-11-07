@@ -40,6 +40,9 @@ class MainMenu:
                 self._state = 0
             else:
                 self._state = 0
+            # Go back
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
 
     def on_loop(self):
         if self._prev_state != self._state:

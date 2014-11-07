@@ -96,6 +96,7 @@ def string_to_avatar(image):
     elif image == "5.png":
         return avatar_5
 
+
 def set_background(screen, asset_path):
     screensize = screen.get_rect()
 
@@ -107,5 +108,5 @@ def set_background(screen, asset_path):
 
 pygame.font.init()
 fonts = {
-    'main': pygame.font.Font("assets/fonts/main.ttf", 25)
-    }
+    'main': pygame.font.Font("assets/fonts/main.ttf", 25),
+    'score': pygame.font.Font("assets/fonts/main.ttf", 90)}

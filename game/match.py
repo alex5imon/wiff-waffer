@@ -52,12 +52,23 @@ class Match:
             self._screen.blit(text, (50, 50))
         # Match on going
         elif self._state == 1:
-            msg = "%s: %i" % (self._player1._name, self._score1)
-            text = pygame.font.Font(None, 32).render(msg, 1, (0, 255, 0))
-            self._screen.blit(text, (50, 50))
-            msg = "%s: %i" % (self._player2._name, self._score2)
-            text = pygame.font.Font(None, 32).render(msg, 1, (0, 255, 0))
-            self._screen.blit(text, (50, 70))
+            # player 1 name
+            msg = "%s" % (self._player1._name)
+            text = u.fonts['main'].render(msg, 1, self._player1._colour)
+            self._screen.blit(text, (180, 500))
+            # player 1 score
+            msg = "%i" % (self._score1)
+            text = u.fonts['score'].render(msg, 1, self._player1._colour)
+            self._screen.blit(text, (200, 300))
+            # player 2 name
+            msg = "%s" % (self._player2._name)
+            text = u.fonts['main'].render(msg, 1, self._player2._colour)
+            self._screen.blit(text, (580, 500))
+            # player 2 score
+            msg = "%i" % (self._score2)
+            text = u.fonts['score'].render(msg, 1, self._player2._colour)
+            self._screen.blit(text, (600, 300))
+
         # Player 1 wins game
         elif self._state == 2:
             text = pygame.font.Font(None, 32).render("Player 1 wins game", 1, (0, 255, 0))
@@ -93,10 +104,10 @@ class Match:
         if self._score1 == 21:
             if self._game1 == 1:
                 self._state = 4  # Player 1 wins match
-                self._m_player1.game_played()
-                self._m_player1.game_won()
+                self._player1.game_played()
+                self._player1.game_won()
                 self._winner = self._player1
-                self._m_player2.game_played()
+                self._player2.game_played()
                 u.set_background(self._screen, "assets/backgrounds/match_menu.png")
             else:
                 self._state = 2  # Player 1 wins game
@@ -107,9 +118,9 @@ class Match:
         if self._score2 == 21:
             if self._game2 == 1:
                 self._state = 5  # Player 2 wins match
-                self._m_player1.game_played()
-                self._m_player2.game_played()
-                self._m_player2.game_won()
+                self._player1.game_played()
+                self._player2.game_played()
+                self._player2.game_won()
                 self._winner = self._player2
                 m.clear_screen()
             else:

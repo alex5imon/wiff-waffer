@@ -17,7 +17,7 @@ class PlayerMenu:
     def __init__(self, screen, player, previous):
         self._player = player
         self._screen = screen
-        self._menu = Menu(50, 50, 20, 5, 'horizontal', 100, screen,
+        self._menu = Menu(50, 50, 20, 5, 'vertical', 100, screen,
                           [('Create Player', 1, None),
                            ('Choose Existent Player', 2, None)], "assets/backgrounds/player_menu.png")
 

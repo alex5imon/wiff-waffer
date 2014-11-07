@@ -70,12 +70,12 @@ class TournamentController:
     def add_player(self, player):
         if not self.is_full():
             while True:
-                idx = randint(0, 7)
+                idx = randint(0, 3)
                 if self._matches[idx]._player1._avatar is None:
                     self._matches[idx]._player1 = player
                     self._num_players += 1
                     return
-                elif self._matches[idx]._player2_avatar is None:
+                elif self._matches[idx]._player2._avatar is None:
                     self._matches[idx]._player2 = player
                     self._num_players += 1
                     return

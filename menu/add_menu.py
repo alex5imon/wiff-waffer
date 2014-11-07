@@ -9,7 +9,7 @@
 import pygame
 import eztext
 import __main__ as m
-from utils import EVENT_CHANGE_STATE
+import utils as u
 
 user_name = None
 user_colour = None
@@ -20,7 +20,7 @@ class AddText:
 
     def __init__(self, screen):
         self._screen = screen
-        self._txt = eztext.Input(x=50, y=50, maxlength=45, color=(255, 0, 0), prompt='User name: ')
+        self._txt = eztext.Input(x=250, y=400, font=u.fonts['main'], maxlength=45, color=(255, 255, 255), prompt='Username ')
 
     def on_event(self, event):
         self._txt.update(event)
@@ -62,7 +62,7 @@ class AddMenu:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 self._state = 0
                 m.create_player(name=self._addText.get_name())
-                pygame.event.post(pygame.event.Event(EVENT_CHANGE_STATE, key=0))
+                pygame.event.post(pygame.event.Event(u.EVENT_CHANGE_STATE, key=0))
                 # m.clear_screen()
                 m.on_change_menu(self._opt1)
                 self._addText.on_reset()
@@ -75,7 +75,7 @@ class AddMenu:
 
     def on_loop(self):
         if self._prev_state != self._state:
-            pygame.event.post(pygame.event.Event(EVENT_CHANGE_STATE, key=0))
+            pygame.event.post(pygame.event.Event(u.EVENT_CHANGE_STATE, key=0))
             self._prev_state = self._state
         self._ready = m.get_current_player().is_player_complete()
 
