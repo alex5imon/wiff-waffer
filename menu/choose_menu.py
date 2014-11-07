@@ -14,7 +14,8 @@ from utils import EVENT_CHANGE_STATE
 
 class ChooseMenu:
 
-    def __init__(self, screen):
+    def __init__(self, screen, previous):
+        self._previous = previous
         self._screen = screen
         self._menu = None
         self._menu_list = []
@@ -41,13 +42,16 @@ class ChooseMenu:
                 self._rect_list, self._state = self._menu.update(event, self._state)
             else:
                 player_name = self._menu_list[self._state - 1][0]
-                m.add_player_by_name(player_name)
-                m.on_change_menu('match')  # Go to match
+                if self._previous == 'tournament':
+                    m.add_player_by_name(player_name, tournament=True)
+                else:
+                    m.add_player_by_name(player_name, tournament=False)
+                m.on_change_menu(self._previous)  # Go to match
                 self._state = 0
                 del self._menu_list[:]
             # Go back
             if event.key == pygame.K_ESCAPE:
-                m.on_change_menu('match')  # Go to match
+                m.on_change_menu(self._previous)  # Go to match
 
     def on_loop(self):
         if self._prev_state != self._state:

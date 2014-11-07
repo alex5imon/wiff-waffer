@@ -40,13 +40,18 @@ class AddMenu:
 
     def __init__(self, screen, previous):
         self._screen = screen
-        self._previous = previous
 
         self._state = 0
         self._ready = False
         self._prev_state = 1
         self._rect_list = []
         self._addText = AddText(screen)
+
+        self._previous = previous
+        if previous == 'tournament':
+            self._opt1 = 'avatar_tournament'
+        else:
+            self._opt1 = 'avatar'
 
     def on_init(self):
         pass
@@ -59,7 +64,7 @@ class AddMenu:
                 m.create_player(name=self._addText.get_name())
                 pygame.event.post(pygame.event.Event(EVENT_CHANGE_STATE, key=0))
                 # m.clear_screen()
-                m.on_change_menu('avatar')
+                m.on_change_menu(self._opt1)
                 self._addText.on_reset()
             else:
                 self._addText.on_event(event)
