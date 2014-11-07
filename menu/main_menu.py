@@ -26,7 +26,7 @@ class MainMenu:
         self._rect_list = []
 
     def on_init(self):
-        pass
+        m.reset_game()
 
     def on_event(self, event):
         if event.type == pygame.KEYDOWN or event.type == EVENT_CHANGE_STATE:

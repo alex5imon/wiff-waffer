@@ -14,9 +14,9 @@ class Match:
     def __init__(self, screen, player1, player2):
 
         self._screen = screen
+        self.on_reset()
         self._player1 = player1
         self._player2 = player2
-        self.on_reset()
 
     def on_event(self, event):
         if event.type == pygame.KEYDOWN:
@@ -79,6 +79,8 @@ class Match:
         self._game1 = 0
         self._game2 = 0
         self._serve = 0
+        self._player1 = None
+        self._player2 = None
         self.on_reset_score()
 
     def on_reset_score(self):

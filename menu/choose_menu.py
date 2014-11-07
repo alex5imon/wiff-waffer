@@ -16,41 +16,35 @@ class ChooseMenu:
 
     def __init__(self, screen):
         self._screen = screen
-        self._menu = Menu(50, 50, 20, 5, 'vertical', 100, screen,
-                          [('Create Player', 1, None),
-                           ('Choose Existent Player', 2, None)])
-
-        self._menu.set_center(True, True)
-        self._menu.set_alignment('center', 'center')
+        self._menu = None
+        self._menu_list = []
         self._state = 0
         self._prev_state = 1
         self._rect_list = []
 
     def on_init(self):
-        print "players"
-        menu_list = []
         players = m.get_players()
         i = 1
         for p in players:
-            menu_list.append((p._name, i, None))
+            self._menu_list.append((p._name, i, None))
             i += 1
             if i >= 10:
                 break
-        menu_list.append(("Next page", i, None))
-        self._menu = Menu(50, 50, 20, 5, 'vertical', 100, self._screen, menu_list)
+        self._menu_list.append(("Next page", i, None))
+        self._menu = Menu(50, 50, 20, 5, 'vertical', 100, self._screen, self._menu_list)
+        self._menu.set_center(True, True)
+        self._menu.set_alignment('center', 'center')
 
     def on_event(self, event):
         if event.type == pygame.KEYDOWN or event.type == EVENT_CHANGE_STATE:
             if self._state == 0:
                 self._rect_list, self._state = self._menu.update(event, self._state)
             else:
-                # TODO: add the player to match and go back
+                player_name = self._menu_list[self._state - 1][0]
+                m.add_player_by_name(player_name)
                 m.on_change_menu('match')  # Go to match
-            if self._state == 1:
-                m.on_change_menu('add')  # Go to create player
-            if self._state == 2:
-                m.on_change_menu('choose')  # Go to choose player
-            self._state = 0
+                self._state = 0
+                del self._menu_list[:]
             # Go back
             if event.key == pygame.K_ESCAPE:
                 m.on_change_menu('match')  # Go to match

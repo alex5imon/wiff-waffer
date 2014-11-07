@@ -17,22 +17,15 @@ class GameController:
     def __init__(self, screen):
         self._screen = screen
         self._players = []
-        self._match = None
-        self._currentPlayer = p.Player("Unknown", None, None, None)
-        self._playerId = 1
-        # TEST
-        self._player1 = None
-        self._player2 = None
+        self.on_reset()
 
     def on_load(self):
-        print "LOADING"
         for fn in os.listdir('players'):
             player = p.Player("Unknown", None, None, None)
-            player.load(fn)
-            print "name: %s" % player._name
-            if os.path.isfile(fn):
-                print "LADOING 2"
-                print fn
+            path = os.path.join("players", fn)
+            player.load(path)
+            if player._avatar is not None:
+                self._players.append(player)
 
     def on_event(self, event):
         self._match.on_event(event)
@@ -43,6 +36,13 @@ class GameController:
     def on_render(self):
         self._match.on_render()
 
+    def on_reset(self):
+        self._match = None
+        self._currentPlayer = p.Player("Unknown", None, None, None)
+        self._playerId = 1
+        self._player1 = None
+        self._player2 = None
+
     def add_player_1(self, player):
         self._player1 = player
 
@@ -51,6 +51,16 @@ class GameController:
 
     def start_match(self):
         self._match = match.Match(self._screen, self._player1, self._player2)
+
+    def add_player(self):
+        if self._playerId == 1:
+            self._playerId = 2
+            self.add_player_1(self._currentPlayer)
+        else:
+            self._playerId = 1
+            self.add_player_2(self._currentPlayer)
+            self.start_match()
+        self._currentPlayer = p.Player("Unknown", None, None, None)
 
     def create_player(self, name=None, avatar=None, colour=None):
         if name is not None:
@@ -61,23 +71,18 @@ class GameController:
         if colour is not None:
             self._currentPlayer._colour = colour
         if self._currentPlayer.is_player_complete():
-            if self._playerId == 1:
-                self._playerId = 2
-                self.add_player_1(self._currentPlayer)
-            else:
-                self._playerId = 1
-                self.add_player_2(self._currentPlayer)
-                self.start_match()
             self._players.append(self._currentPlayer)
             self._currentPlayer.save()
-            self._currentPlayer = p.Player("Unknown", None, None, None)
+            self.add_player()
             return True
         return False
 
     def get_players(self):
         return self._players
 
-    def get_player_by_name(self, name):
+    def add_player_by_name(self, name):
         for p in self._players:
             if p._name == name:
-                return p
+                self._currentPlayer = p
+                self.add_player()
+                return
