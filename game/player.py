@@ -36,10 +36,10 @@ class Player:
     def load(self, filename):
         data = u.read_json(filename)
         if data is not None:
-            self._name = data['name']
-            self._avatar = u.string_to_image(data['avatar_name'])
-            self._avatar_name = data['avatar_name']
-            self._colour = data['colour']
+            self._name = data[0]['name']
+            self._avatar = u.string_to_avatar(data[0]['avatar_name'])
+            self._avatar_name = data[0]['avatar_name']
+            self._colour = data[0]['colour']
         else:
             print "Error loading %s" % filename
 

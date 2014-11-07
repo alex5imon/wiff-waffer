@@ -35,7 +35,7 @@ class MatchMenu:
                 self._rect_list, self._state = self._menu.update(event, self._state)
             if self._state == 1:
                 m.on_change_menu('player1')  # Go to player1
-            if self._state == 2:
+            if (m.get_player_1() is not None) and self._state == 2:
                 m.on_change_menu('player2')  # Go to player2
             self._state = 0
             # Go back

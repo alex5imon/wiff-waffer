@@ -117,6 +117,10 @@ def create_player(name=None, avatar=None, colour=None):
     game._game_controller.create_player(name, avatar, colour)
 
 
+def add_player_by_name(name=None):
+    game._game_controller.add_player_by_name(name)
+
+
 def get_current_player():
     return game._game_controller._currentPlayer
 
@@ -131,6 +135,10 @@ def get_player_2():
 
 def get_players():
     return game._game_controller._players
+
+
+def reset_game():
+    game._game_controller.on_reset()
 
 # Program begins
 if __name__ == "__main__":
