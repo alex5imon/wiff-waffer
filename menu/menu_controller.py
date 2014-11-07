@@ -15,7 +15,7 @@ import player_menu
 import choose_menu
 import avatar_menu
 import colour_menu
-from utils import EVENT_CHANGE_STATE
+from utils import EVENT_CHANGE_STATE, set_background
 
 
 class MenuController:
@@ -47,6 +47,11 @@ class MenuController:
     def on_render(self):
         self._current.on_render()
 
+    def update_background(self):
+        if hasattr(self._current, '_menu') and self._current._menu.bg_path:
+            set_background(self._screen, self._current._menu.bg_path)
+            pygame.display.update()
+
     def on_change_menu(self, menu):
         try:
             self._current = self._menu_list[menu]
@@ -54,5 +59,5 @@ class MenuController:
         except:
             print 'ERROR: passed %s' % menu
             self._current = self._menu_list['main']
-        pygame.event.post(pygame.event.Event(EVENT_CHANGE_STATE, key=0))
 
+        pygame.event.post(pygame.event.Event(EVENT_CHANGE_STATE, key=0))

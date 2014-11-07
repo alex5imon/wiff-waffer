@@ -23,7 +23,7 @@ class AvatarMenu:
                            ('Image', 2, u.avatar_2),
                            ('Image', 3, u.avatar_3),
                            ('Image', 4, u.avatar_4),
-                           ('Image', 5, u.avatar_5)])
+                           ('Image', 5, u.avatar_5)], "assets/backgrounds/avatar_menu.png")
 
         self._menu.set_center(True, True)
         self._menu.set_alignment('center', 'center')

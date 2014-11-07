@@ -9,7 +9,7 @@ import utils
 
 class Menu:
 
-    def __init__(self, x, y, h_pad, v_pad, orientation, number, background, buttonList):
+    def __init__(self, x, y, h_pad, v_pad, orientation, number, background, buttonList, bg_path=None):
         ## menu items
         self.menu_items = []
         self.font = pygame.font.Font(None, 32)
@@ -37,6 +37,11 @@ class Menu:
         self.alignment = {'vertical': 'top', 'horizontal': 'left'}
 
         self.add_buttons(buttonList)
+
+        if bg_path:
+            self.bg_path = bg_path
+        else:
+            self.bg_path = None
 
     def redraw_all(self):
         for button in self.menu_items:

@@ -95,3 +95,12 @@ def string_to_avatar(image):
         return avatar_4
     elif image == "5.png":
         return avatar_5
+
+def set_background(screen, asset_path):
+    screensize = screen.get_rect()
+
+    background = pygame.transform.scale(
+        pygame.image.load(asset_path),
+        (screensize.width, screensize.height))
+
+    screen.blit(background, background.get_rect())
