@@ -20,7 +20,7 @@ class ColourMenu:
                            ('Image', 2, u.blue_image),
                            ('Image', 3, u.green_image),
                            ('Image', 4, u.yellow_image),
-                           ('Image', 5, u.white_image)])
+                           ('Image', 5, u.white_image)], "assets/backgrounds/color_menu.png")
 
         self._menu.set_center(True, True)
         self._menu.set_alignment('center', 'center')

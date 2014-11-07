@@ -17,9 +17,7 @@ class MainMenu:
     def __init__(self, screen):
         self._menu = Menu(50, 50, 20, 5, 'horizontal', 100, screen,
                           [('Single Game', 1, None),
-                           ('Tournament', 2, None)])
-
-        self._menu.set_background(screen, "assets/backgrounds/main_menu.png")
+                           ('Tournament', 2, None)], "assets/backgrounds/main_menu.png")
 
         self._menu.set_center(True, True)
         self._menu.set_alignment('center', 'center')

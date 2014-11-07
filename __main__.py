@@ -40,6 +40,7 @@ class WiffWaffer:
         # Create game
         self._game_controller = gc.GameController(self._display_surf)
         self._game_controller.on_load()
+        game._menu_controller.update_background()
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
@@ -99,13 +100,11 @@ def clear_screen():
 
 def on_change_menu(menu):
     game._menu_controller.on_change_menu(menu)
-    clear_screen()
-
+    game._menu_controller.update_background()
 
 def back_to_menu():
     game._state = 0
     on_change_menu('main')
-    clear_screen()
 
 
 def start_game():

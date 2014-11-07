@@ -57,7 +57,7 @@ class AddMenu:
                 self._state = 0
                 m.create_player(name=self._addText.get_name())
                 pygame.event.post(pygame.event.Event(EVENT_CHANGE_STATE, key=0))
-                m.clear_screen()
+                # m.clear_screen()
                 m.on_change_menu('avatar')
                 self._addText.on_reset()
             else:

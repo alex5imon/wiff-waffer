@@ -19,7 +19,7 @@ class PlayerMenu:
         self._screen = screen
         self._menu = Menu(50, 50, 20, 5, 'horizontal', 100, screen,
                           [('Create Player', 1, None),
-                           ('Choose Existent Player', 2, None)])
+                           ('Choose Existent Player', 2, None)], "assets/backgrounds/player_menu.png")
 
         self._menu.set_center(True, True)
         self._menu.set_alignment('center', 'center')
