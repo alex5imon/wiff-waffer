@@ -31,7 +31,7 @@ class ChooseMenu:
             if i >= 10:
                 break
         self._menu_list.append(("Next page", i, None))
-        self._menu = Menu(50, 50, 20, 5, 'vertical', 100, self._screen, self._menu_list)
+        self._menu = Menu(50, 50, 20, 5, 'vertical', 100, self._screen, self._menu_list, "assets/backgrounds/choose_menu.png")
         self._menu.set_center(True, True)
         self._menu.set_alignment('center', 'center')
 

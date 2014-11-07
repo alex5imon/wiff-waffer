@@ -8,6 +8,7 @@
 
 import pygame
 import __main__ as m
+import utils as u
 
 
 class Match:
@@ -23,20 +24,20 @@ class Match:
             if self._state == 0:
                 if event.key == pygame.K_RETURN:
                     self._state = 1
-                    m.clear_screen()
+                    u.set_background(self._screen, "assets/backgrounds/match_menu.png")
             elif self._state == 1:
                 if event.key == pygame.K_RETURN:
                     self._score1 += 1
                     self.check_winner()
-                    m.clear_screen()
+                    u.set_background(self._screen, "assets/backgrounds/match_menu.png")
                 if event.key == pygame.K_BACKSPACE:
                     self._score2 += 1
                     self.check_winner()
-                    m.clear_screen()
+                    u.set_background(self._screen, "assets/backgrounds/match_menu.png")
             elif self._state == 2 or self._state == 3:
                 if event.key == pygame.K_RETURN:
                     self._state = 1
-                    m.clear_screen()
+                    u.set_background(self._screen, "assets/backgrounds/match_menu.png")
             elif self._state == 4 or self._state == 5:
                 if event.key == pygame.K_RETURN:
                     m.back_to_menu()
@@ -96,7 +97,7 @@ class Match:
                 self._m_player1.game_won()
                 self._winner = self._player1
                 self._m_player2.game_played()
-                m.clear_screen()
+                u.set_background(self._screen, "assets/backgrounds/match_menu.png")
             else:
                 self._state = 2  # Player 1 wins game
                 self._game1 += 1
